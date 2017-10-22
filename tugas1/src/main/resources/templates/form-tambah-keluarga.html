@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tambah Keluarga</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h4><strong>Tambah Keluarga</strong></h4>
+    <form action="/keluarga/tambah" th:action="@{/keluarga/tambah}" th:object="${keluarga}" method="post">
+        <div class="form-group">
+            <label for="alamat"><strong>Alamat</strong></label>
+            <input type="text" class="form-control" name="alamat" id="alamat" th:field="*{alamat}" th:required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="rt"><strong>RT</strong></label>
+            <input type="text" class="form-control" name="rt" id="rt" th:field="*{rt}" th:required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="rw"><strong>RW</strong></label>
+            <input type="text" class="form-control" name="rw" id="rw" th:field="*{rw}" th:required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="kelurahan"><strong>Kelurahan / Desa</strong></label>
+            <input type="text" class="form-control" name="kelurahan" id="kelurahan" th:field="*{nama_kelurahan}" th:required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="kecamatan"><strong>Kecamatan</strong></label>
+            <input type="text" class="form-control" name="kecamatan" id="kecamatan" th:field="*{nama_kecamatan}" th:required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="kota"><strong>Kota</strong></label>
+            <input type="text" class="form-control" name="kota" id="kota" th:field="*{nama_kota}" th:required="required"/>
+        </div>
+        <div>
+            <button type="submit" value="submit" class="btn btn-primary">Simpan</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

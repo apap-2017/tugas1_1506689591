@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Non Aktifkan Penduduk</title>
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h3>Sukses !</h3>
+    <p th:text="'Penduduk dengan NIK ' + ${nik} + ' sudah tidak aktif'">Sukses nonaktifkan penduduk</p>
+    <form action="/penduduk" method="get">
+        <input type="hidden" name="nik" th:value="${nik}"/>
+        <button type="submit" class="btn btn-primary" value="view">Kembali ke Halaman Penduduk</button>
+    </form>
+</div>
+<!--<div th:replace="fragments/fragment :: footer"></div>-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

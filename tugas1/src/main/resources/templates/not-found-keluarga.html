@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Keluarga tidak ditemukan</title>
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h3><strong>Keluarga tidak ditemukan </strong></h3>
+    <h3 th:text="'Nomor KK = ' + ${nomor_kk}">Nkk Keluarga</h3>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

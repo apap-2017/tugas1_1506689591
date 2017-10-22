@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cari Penduduk</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h4>Lihat Data Penduduk Berdasarkan Kota</h4>
+    <form action="/penduduk/cari" method="get">
+        <div class="form-group">
+            <label for="daftar_kota"><strong>Kota</strong></label>
+            <select name="kt" class="form-control" id="daftar_kota">
+                <option th:disabled="true" th:value="NOT_SELECTED" th:text="'Pilih Kota'"></option>
+                <option th:each="kota : ${daftar_kota}"  th:value="${kota.id}" th:text="${kota.nama_kota}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" value="submit" class="btn btn-primary">Lihat</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

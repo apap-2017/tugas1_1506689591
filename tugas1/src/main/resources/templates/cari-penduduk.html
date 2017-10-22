@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cari Penduduk</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <!--<link rel="stylesheet" th:href="@{/css/datatables.min.css}"/>-->
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h4 th:text="'Lihat Data Penduduk di ' + ${kota.nama_kota} + ', Kecamatan ' + ${kecamatan.nama_kecamatan} + ', Kelurahan ' + ${kelurahan.nama_kelurahan}"></h4>
+    <br></br>
+    <table id="table-list-penduduk" class="display">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIK</th>
+                <th>Nama Lengkap</th>
+                <th>Jenis Kelamin</th>
+                <th>Tempat, Tanggal Lahir</th>
+                <th>Agama</th>
+                <th>Pekerjaan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="penduduk,iterationStatus: ${daftar_penduduk}">
+                <tr>
+                    <td th:text="${iterationStatus.count}"></td>
+                    <td th:text="${penduduk.nik}" >Nik Penduduk</td>
+                    <td th:text="${penduduk.nama}" >Nama Penduduk</td>
+                    <div th:switch="${penduduk.jenis_kelamin}">
+                        <td th:case="'1'">Perempuan</td>
+                        <td th:case="'0'">Laki-Laki</td>
+                    </div>
+                    <td th:text="${penduduk.tempat_lahir} + ', ' + ${#dates.format(penduduk.tanggal_lahir, 'dd MMMMMMMMMM yyyy')}">TTL Penduduk></td>
+                    <td th:text="${penduduk.agama}" >Agama Penduduk</td>
+                    <td th:text="${penduduk.pekerjaan}" >Pekerjaan Penduduk</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" charset="utf8"
+        src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" charset="utf8"
+        src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table-list-penduduk').DataTable();
+    });
+</script>
+</body>
+</html>

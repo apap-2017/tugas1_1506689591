@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cari Penduduk</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h4 th:text="'Lihat Data Penduduk Berdasarkan Kelurahan di ' + ${kota.nama_kota} + ', Kecamatan ' + ${kecamatan.nama_kecamatan}"></h4>
+    <form action="/penduduk/cari" method="get">
+        <div class="form-group">
+            <label for="daftar_kota"><strong>Kota</strong></label>
+            <select name="kt" class="form-control" id="daftar_kota" readonly="true">
+                <option th:value="${kota.id}" th:text="${kota.nama_kota}" selected="selected"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="daftar_kecamatan"><strong>Kecamatan</strong></label>
+            <select name="kc" class="form-control" id="daftar_kecamatan" readonly="true">
+                <option th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}" selected="selected"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="daftar_kelurahan"><strong>Kelurahan</strong></label>
+            <select class="form-control" id="daftar_kelurahan" th:name="kl" >
+                <option th:disabled="true" th:value="NOT_SELECTED" th:text="'Pilih Kelurahan'"></option>
+                <option th:each="kelurahan : ${daftar_kelurahan}" th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" value="submit" class="btn btn-primary">Lihat</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

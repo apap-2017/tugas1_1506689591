@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Penduduk by NIK</title>
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div th:replace="fragments/fragment :: header"></div>
+    <br></br>
+
+    <div class="container">
+        <h3><strong th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}">Nik Penduduk</strong></h3>
+        <div class="row">
+            <div class="col-md-6 col-centered" >
+                <p><strong>NIK</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.nik}">Nama Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Nama</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.nama}">Nama Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Tempat/Tanggal Lahir</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.tempat_lahir} + ', ' + ${#dates.format(penduduk.tanggal_lahir, 'dd MMMMMMMMMM yyyy')}">TTL Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Alamat</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.alamat}">Alamat Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>RT/RW</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.rt} + '/' + ${penduduk.rw}">Alamat Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Kelurahan/Desa</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.nama_kelurahan}">Kelurahan Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Kecamatan</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.nama_kecamatan}">Kecamatan Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Kota</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.nama_kota}">Kota Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Golongan Darah</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.golongan_darah}">Golongan Darah Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Agama</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.agama}">Agama Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Status Perkawinan</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.status_perkawinan}">Status Perkawinan Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Pekerjaan</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <p th:text="${penduduk.pekerjaan}">Pekerjaan Penduduk</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Kewarganegaraan</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <div th:switch="${penduduk.is_wni}">
+                    <p th:case="'1'">WNI</p>
+                    <p th:case="'0'">WNA</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-centered">
+                <p><strong>Status Kematian</strong></p>
+            </div>
+            <div class="col-md-6 col-centered">
+                <!--<p th:text="${profilPenduduk.is_wafat}">Status Kematian Penduduk</p>-->
+                <div th:switch="${penduduk.is_wafat}">
+                    <p th:case="'1'">Sudah Wafat</p>
+                    <p th:case="'0'">Hidup</p>
+                </div>
+            </div>
+        </div>
+        <form action="/penduduk/mati" method="get">
+            <input type="hidden" name="nik" th:value="${penduduk.nik}"/>
+            <button th:if="${penduduk.is_wafat} == 0" type="submit" class="btn btn-danger" value="nonaktif" style="float: right">Nonaktifkan</button>
+            <button th:if="${penduduk.is_wafat} == 1" type="submit" class="btn" disabled="disabled" value="nonaktif" style="float: right">Nonaktifkan</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
+

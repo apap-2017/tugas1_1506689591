@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Siduk DKI</title>
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div th:replace="fragments/fragment :: header"></div>
+    <br></br>
+    <div class="container">
+        <h2>Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</h2>
+        <p>Selamat datang di Sistem Informasi Kependudukan Online Provinsi DKI Jakarta</p>
+        <hr>
+        </hr>
+        <h4>Lihat Data Penduduk Berdasarkan NIK</h4>
+        <form action="/penduduk" method="get">
+            <div class="form-group">
+                <p for="nik">Masukkan Nomor Induk Kependudukan</p>
+                <input id="nik" type="text" name="nik" th:required="required"/>
+            </div>
+            <br></br>
+            <div>
+                <button class="btn btn-primary" type="submit">Lihat</button>
+            </div>
+        </form>
+        <hr>
+        </hr>
+        <h4>Lihat Data Keluarga Berdasarkan NKK</h4>
+        <form action="/keluarga" method="get">
+            <div>
+                <p for="nomor_kk">Masukkan Nomor Kartu Keluarga</p>
+                <input id="nomor_kk" type="text" name="nkk" th:required="required"/>
+            </div>
+            <br></br>
+            <div>
+                <button class="btn btn-primary" type="submit">Lihat</button>
+            </div>
+        </form>
+    </div>
+    <!--<div th:replace="fragments/fragment :: footer"></div>-->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

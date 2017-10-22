@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Keluarga by NKK</title>
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h3><strong th:text="'Lihat Data Keluarga - ' + ${nomor_kk}">Nkk Keluarga</strong></h3>
+    <div class="row">
+        <div class="col-md-6 col-centered" >
+            <p><strong>NKK</strong></p>
+        </div>
+        <div class="col-md-6 col-centered">
+            <p th:text="${nomor_kk}">NKK Keluarga</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-centered">
+            <p><strong>Alamat</strong></p>
+        </div>
+        <div class="col-md-6 col-centered">
+            <p th:text="${keluarga.alamat}">Alamat Keluarga</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-centered">
+            <p><strong>RT/RW</strong></p>
+        </div>
+        <div class="col-md-6 col-centered">
+            <p th:text="${keluarga.rt} + '/' + ${keluarga.rw}">RT/RW Keluarga</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-centered">
+            <p><strong>Kelurahan/Desa</strong></p>
+        </div>
+        <div class="col-md-6 col-centered">
+            <p th:text="${keluarga.nama_kelurahan}">Kelurahan/Desa Keluarga</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-centered">
+            <p><strong>Kecamatan</strong></p>
+        </div>
+        <div class="col-md-6 col-centered">
+            <p th:text="${keluarga.nama_kecamatan}">Kecamatan Keluarga</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-centered">
+            <p><strong>Kota</strong></p>
+        </div>
+        <div class="col-md-6 col-centered">
+            <p th:text="${keluarga.nama_kota}">Kota Keluarga</p>
+        </div>
+    </div>
+    <hr></hr>
+    <table class="table table-bordered">
+        <tr>
+            <th>No</th>
+            <th>Nama Lengkap</th>
+            <th>NIK</th>
+            <th>Jenis Kelamin</th>
+            <th>Tempat Lahir</th>
+            <th>Tanggal Lahir</th>
+            <th>Agama</th>
+            <th>Pekerjaan</th>
+            <th>Status Perkawinan</th>
+            <th>Status Dalam Keluarga</th>
+            <th>Kewarganegaraan</th>
+            <th>Status Kematian</th>
+        </tr>
+        <th:block th:each="penduduk,iterationStatus: ${keluarga.anggotaKeluarga}">
+            <tr>
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${penduduk.nama}" >Nama Penduduk</td>
+                <td th:text="${penduduk.nik}" >Nik Penduduk</td>
+                <!--<td th:text="${penduduk.jenis_kelamin}" >Jenis Kelamin Penduduk</td>-->
+                <div th:switch="${penduduk.jenis_kelamin}">
+                    <td th:case="'0'">Laki-Laki</td>
+                    <td th:case="'1'">Perempuan</td>
+                </div>
+                <td th:text="${penduduk.tempat_lahir}" >Tempat Lahir Penduduk</td>
+                <td th:text="${#dates.format(penduduk.tanggal_lahir, 'dd MMMMMMMMMM yyyy')}" >Tanggal Lahir Penduduk</td>
+                <td th:text="${penduduk.agama}" >Agama Penduduk</td>
+                <td th:text="${penduduk.pekerjaan}" >Pekerjaan Penduduk</td>
+                <td th:text="${penduduk.status_perkawinan}" >Status Perkawinan Penduduk</td>
+                <td th:text="${penduduk.status_dalam_keluarga}" >Status dalam Keluarga Penduduk</td>
+                <div th:switch="${penduduk.is_wni}">
+                    <td th:case="'1'">WNI</td>
+                    <td th:case="'0'">WNA</td>
+                </div>
+                <div th:switch="${penduduk.is_wafat}">
+                    <td th:case="'1'">Meninggal</td>
+                    <td th:case="'0'">Hidup</td>
+                </div>
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
+

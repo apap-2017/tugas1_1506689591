@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Keluarga</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:replace="fragments/fragment :: header"></div>
+<br></br>
+<div class="container">
+    <h4><strong>Update Keluarga</strong></h4>
+    <form th:action="'/keluarga/ubah/' + ${nomor_kk}" th:object="${keluarga}" method="post">
+        <input type="hidden" class="form-control" name="id" id="id" th:field="*{id}" th:value="${keluarga.id}"/>
+        <input type="hidden" class="form-control" name="nomor_kk" id="nomor_kk" th:field="*{nomor_kk}" th:value="${keluarga.nomor_kk}"/>
+        <div class="form-group">
+            <label for="alamat"><strong>Alamat</strong></label>
+            <input type="text" class="form-control" name="alamat" id="alamat" th:field="*{alamat}" th:value="${keluarga.alamat}"/>
+        </div>
+        <div class="form-group">
+            <label for="rt"><strong>RT</strong></label>
+            <input type="text" class="form-control" name="rt" id="rt" th:field="*{rt}" th:value="${keluarga.rt}"/>
+        </div>
+        <div class="form-group">
+            <label for="rw"><strong>RW</strong></label>
+            <input type="text" class="form-control" name="rw" id="rw" th:field="*{rw}" th:value="${keluarga.rw}"/>
+        </div>
+        <div class="form-group">
+            <label for="id_kelurahan"><strong>Id Kelurahan</strong></label>
+            <input type="text" class="form-control" name="id_kelurahan" id="id_kelurahan" th:field="*{id_kelurahan}" th:value="${keluarga.id_kelurahan}"/>
+        </div>
+        <div class="form-group">
+            <label for="is_tidak_berlaku"><strong>Apakah Masih Berlaku</strong></label>
+            <!--<input type="text" class="form-control" name="is_tidak_berlaku" id="is_tidak_berlaku" th:field="*{is_tidak_berlaku}" th:value="${keluarga.is_tidak_berlaku}"/>-->
+            <select class="form-control" id="is_tidak_berlaku" th:field="*{is_tidak_berlaku}" th:value="${keluarga.is_tidak_berlaku}">
+                <option value="0">Berlaku</option>
+                <option value="1">Tidak Berlaku</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" value="submit" class="btn btn-primary">Simpan</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
